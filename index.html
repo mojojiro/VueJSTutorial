@@ -7,13 +7,82 @@
   </head>
   <body>
     <div id="vue-app">
+      <button-counter></button-counter>
+      <hr/>
+      <text-post title="test component prop 1" v-bind:view="100"></text-post>
+      <text-post title="test component prop 2"></text-post>
+      <hr/>
+      Name : <input type="text" v-model:value="name">
+      <br/>
+      Food Fav :
+      <input type="checkbox" value="ส้มตำ" v-model="foods">
+      <label>ส้มตำ</label>
+      <input type="checkbox" value="พิซซ่า" v-model="foods">
+      <label>พิซซ่า</label>
+      <input type="checkbox" value="มาม่า" v-model="foods">
+      <label>มาม่า</label>
+      <br/>
+      Gender :
+      <input type="radio" value="Male" v-model="gender">
+      <label>Male</label>
+      <input type="radio" value="Female" v-model="gender">
+      <label>Female</label>
+
+      <hr/>
+      <br/>
       <h1>Name : {{getName()}}</h1>
       <h1>Job : {{job}}</h1>
       <h1>Age : {{age}}</h1>
       <h1>Facebook : <a v-bind:href="website"> link </a></h1>
+      <input type="text" v-on:keyup="addCount">
+      <h1>Count: {{count}}</h1>
+      <h1>Foods : {{foods}}</h1>
+      <h1>Gender : {{gender}}</h1>
+      <br/>
+      <button type="button" v-on:click="addAge">add</button>
+      <button type="button" v-on:click="subtractAge">subtract</button>
+      <!-- if statement -->
+      <button type="button" v-on:click="like=!like">Like</button>
+      <h1 v-if="like">Like</h1>
+      <!-- loop -->
 
-      <input type="text" name="" v-bind:value="name">
-      <input type="text" name="" v-bind:value="job">
+      <div v-if="products.length>0">
+        <h1>Products :</h1>
+        <ul>
+          <li v-for="result in products">{{ result }}</li>
+        </ul>
+      </div>
+
+      <hr/>
+      <span>Employee Name :</span>
+      <input type="text" v-model="newEmployeeData.empName">
+      <span>Employee Age :</span>
+      <input type="text" v-model="newEmployeeData.empAge">
+      <br/>
+      <button type="button" @click="addEmp">S A V E</button>
+      <br/>
+      <div v-if="employees.length>0">
+        <h1>Employees :</h1>
+        <h2>AVG. Age : {{ avgAge }} Years</h2>
+        <ul>
+          <li v-for="result in employees">{{ result.empName }} / {{ result.empAge }}</li>
+        </ul>
+      </div>
+
+    </div>
+    <hr/>
+
+    <div id="div-post">
+      หัวข้อ:{{ title }}<br/>
+      ข้อความ:{{ massage }}
+    </div>
+
+    <div id="div-comment">
+      <textarea name="name" rows="8" cols="80">{{ text }}</textarea>
+    </div>
+    <div id="div-like">
+      <button type="button" name="button" v-on:click="changeLike()">Like</button>
+      {{ like }}
     </div>
     <script src="app.js" charset="utf-8"></script>
   </body>
